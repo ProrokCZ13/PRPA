@@ -9,9 +9,9 @@ logickySoucet a b = if a > 0 then True else if b > 0 then True else False
 
 --vzory (patter matching)
 ligickySoucin False False = False
-ligickySoucin False True = True
-ligickySoucin True False = True
-ligickySoucin True True = True
+ligickySoucin _ _ = True
+--ligickySoucin True False = True
+--ligickySoucin True True = True
 
 
 
