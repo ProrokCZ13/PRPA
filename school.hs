@@ -72,3 +72,134 @@ theLastOfTheRealOnes (_:xs) = theLastOfTheRealOnes xs
 
 predposledni [y,_] = y
 predposledni (_:ys) = predposledni ys
+
+-------------------------------------------
+--cvi5(4)
+
+prvek a (x:xs) = if a == x then True else False
+
+nty 1 (x:_) = x
+nty n (_:xs) = nty (n - 1) xs
+
+delka [] = 0
+delka (x:xs) = 1+ delka xs
+
+soucet [] = 0
+soucet (x:xs) = x + soucet xs
+
+otoc xs = otocq xs []
+otocq [] a = a
+otocq (x:xs) a = otocq xs (x:a)
+
+zvys02 a = (+2) a
+
+umocniNa6 a = (^6) a
+
+aplikujBinarniFunkci a b f = f a b 
+
+abf12 = aplikujBinarniFunkci 1.0 2.0
+
+zvysList [] = []
+zvysList (x:xs) = (x+1) : zvysList xs
+
+aplikujNaPrvkySeznamo _ [] = []
+aplikujNaPrvkySeznamo f (x:xs)= f x : aplikujNaPrvkySeznamo f xs
+
+--aplikujNaPrvkySeznamo abf12 [(+),(-),(*),(/)]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--   ----
+--   |  |
+--   O  |
+--      |
+--      |
+--      |
+--  =====
