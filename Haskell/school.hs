@@ -5,201 +5,112 @@
 -- :r <soubor> => znovunačtení scriptu
 
 
-soucetCtveru a b = (a ^ 2) + (b ^ 2)
+trojuhelnik a b c = if (a + b) > c && (a + c) > b && (b + c) > a then "Ano" else "Ne"
 
-jeMensi a b = a < b
+pythagoras a b = sqrt(a^2 + b^2)
 
-mensi a b = if a < b || a == b then print a else print b
+soucetCtvercu a b = a^2 + b^2
 
-logickySoucet a b = if a > 0 then True else if b > 0 then True else False  
+jeMensi a b
+    | a < b = "Splněno"
+    | otherwise = "Nesplněno"
 
+absolutni a
+    | a < 0 = -a
+    | otherwise = a
 
---vzory (patter matching)
-ligickySoucet False False = False
-ligickySoucet True _ = True
---ligickySoucin True False = True
---ligickySoucin True True = True
+faktorial 0 = 1
+faktorial n = n * faktorial (n-1)
 
-
-logickySoucin True True = True
-logickySoucin _ _ = False
-
-ligickySoucin a b = if a == True then if b == True then True else False else False
-
-
-absoulutniHodnota x = if x < 0 then -x else x
-
-
------------------------------------------------------------------------------------------------------------------
---cvi4(3)
-
-
-faktorial n
-    | n < 0 = error --faktorial ze zaporne hodnoty
+{-faktorial n
+    | n < 0 = error "Chyba"
     | n == 0 = 1
-    | otherwise = n * faktorial (n-1)
+    | otherwise = n * faktorial (n-1)-}
 
-zbytek a d
-    | a < d = a
-    | otherwise = zbytek (a - d) d 
+nsd a 0 = a
+nsd a b = nsd b (a `mod` b)
 
+{-nsd a b
+    | b == 0 = a
+    | otherwise = nsd b (a `mod` b)-}
 
---Seznam (najdu tam co hledám (zabte mě pls))
---Je to pole ale <slovo na R>
+prvni [] = error "Prázdný seznam"
+prvni (h:_) = h
 
-list1 = [1..100]
-list2 = [100,99..1]
+druhy [] = error "prazdny"
+druhy (_:h:_) = h
 
+posledni [] = error "prazdny"
+posledni [a] = a
+posledni (h:t) = posledni t
 
-listonos = [x^2 | x<-[1..10]]
+predposledni [] = error "prazdny"
+predposledni [_] = error "prazdny"
+predposledni [a, _] = a
+predposledni (h:t) = predposledni t
 
-listonosisko = [(x,y,z) | x <- [1..4], y <- [1..4], z <- [1..4]]
+prvek _ [] = False
+prvek a (x:s)
+    | a == x = True
+    | otherwise = prvek a s
 
-listina = [x^2 | x <- [1..10], even x]
+nty _ [] = error "Nelze"
+nty 1 (x:s) = x
+nty n (x:s)
+    | n < 0 = error "Nelze"
+    | otherwise = nty (n-1) s
 
-listx = [ x | x <- [1..1200600], rem 1200600 x == 0 ]
+delkaPomocna n [] = n
+delkaPomocna n (x:s) = delkaPomocna (n + 1) s
 
+delka a = delkaPomocna 0 a
 
-prvni (x:_) = x;
-druhy (_:y:_) = y;
-
---byla uz nuda tak jsem daval nazvy songu
-
-letTheBodiesHitFloor (_:x) = x
-
-theLastOfTheRealOnes [x] = x
-theLastOfTheRealOnes (_:xs) = theLastOfTheRealOnes xs
-
-predposledni [y,_] = y
-predposledni (_:ys) = predposledni ys
-
--------------------------------------------
---cvi5(4)
-
-prvek a (x:xs) = if a == x then True else False
-
-nty 1 (x:_) = x
-nty n (_:xs) = nty (n - 1) xs
-
-delka [] = 0
-delka (x:xs) = 1+ delka xs
+soucetPomocna n [] = n
+soucetPomocna n (x:s) = soucetPomocna (n + x) s
 
 soucet [] = 0
-soucet (x:xs) = x + soucet xs
+soucet a = soucetPomocna 0 a
 
-otoc xs = otocq xs []
-otocq [] a = a
-otocq (x:xs) a = otocq xs (x:a)
+nejmensiPrvekPomoc min [] = min
+nejmensiPrvekPomoc min (x:s)
+    | min > x = nejmensiPrvekPomoc x s
+    | otherwise = nejmensiPrvekPomoc min s
 
-zvys02 a = (+2) a
+nejmensi (x:s) = nejmensiPrvekPomoc x s
+
+smazPrvni _ [] = []
+smazPrvni a (x:s)
+    | a == x = s
+    | otherwise = x : smazPrvni a s
+
+smazVsechny _ [] = []
+smazVsechny a (x:s)
+    | a == x = smazVsechny a s
+    | otherwise = x : smazVsechny a s
+
+otoc [] = []
+otoc (x:s) = otoc s ++ [x]
+
+scitaniSDvojkou a = (+2) a
 
 umocniNa6 a = (^6) a
 
-aplikujBinarniFunkci a b f = f a b 
+umocni6 a = 6^a
 
-abf12 = aplikujBinarniFunkci 1.0 2.0
+aplikujBinarniFunkci a b f = (f) a b
 
-zvysList [] = []
-zvysList (x:xs) = (x+1) : zvysList xs
+abf12 f = aplikujBinarniFunkci 1 2 f
 
-aplikujNaPrvkySeznamo _ [] = []
-aplikujNaPrvkySeznamo f (x:xs)= f x : aplikujNaPrvkySeznamo f xs
+zvys [] = []
+zvys (x:s) = (x+1) : zvys s
 
---aplikujNaPrvkySeznamo abf12 [(+),(-),(*),(/)]
+aplikujNaPrvkySeznamu _ [] = []
+aplikujNaPrvkySeznamu f (x:s) = (f x) : aplikujNaPrvkySeznamu f s
 
+-- aplikujNaPrvkySeznamu abf12 [(+), (-), (*), (/)]  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---   ----
---   |  |
---   O  |
---      |
---      |
---      |
---  =====
+-- zápočet discord
+zdvojLiche [] = []
+zdvojLiche (x:s)
+    | x `mod` 2 == 0 = x : zdvojLiche s
+    | otherwise = (2 * x) : zdvojLiche s
