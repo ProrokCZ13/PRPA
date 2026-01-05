@@ -20,7 +20,7 @@
 # "+", "-", "*"  % -> Sčítání, odčítání, násobení (používá se s 'is')
 # "/", "//"      % -> Dělení (Float) / Celočíselné dělení (Integer)
 # "mod", "div"   % -> Zbytek po dělení (Modulo) / Celočíselné dělení (jako funkce)
-# "**"   % -> Umocňování (exponentiation)
+# "**"           % -> Umocňování (exponentiation)
 #-------------------------------------------------
 # Aritmetické porovnávání (vyžaduje, aby termy byly předem vyhodnocené):
 # "<", ">",      % -> Menší než, Větší než
@@ -49,7 +49,7 @@
 # "name"                 % -> Konverze Atom <-> Seznam ASCII kódů
 #-------------------------------------------------
 # % Dynamická manipulace s databází:
-# "dynamic"              % -> Deklaruje predikát jako dynamický (lze ho měnit za běhu)
+# "dynamic"                      % -> Deklaruje predikát jako dynamický (lze ho měnit za běhu)
 # "assert", "asserta", "assertz" % -> Dynamicky přidá klauzuli (na konec / začátek / konec)
 # "retract", "retractall"        % -> Dynamicky odstraní klauzuli (jednu / všechny)
 # "abolish"                      % -> Odstraní celou definici predikátu
@@ -214,7 +214,7 @@ mezera nl.
 vypis_predku:-
     write('Zadej jmeno osoby: '), % výzva pro uživatele
     nl,
-    read(Osoby),                   % načte jméno z klávesnice
+    read(Osoby),                  % načte jméno z klávesnice
     predek(Predek, Osoby),        % najde jednoho předka
     write('Predek: '), 
     write(Predek),                % vypíše jméno předka
