@@ -3,7 +3,7 @@
 # halt.          % -> Ukončení Prolog systému
 # listing.       % -> Vypsání všech dynamicky definovaných predikátů
 #-------------------------------------------------
-# ","           % -> Konjunkce (AND) - odděluje cíle, které musí být splněny postupně
+# ","            % -> Konjunkce (AND) - odděluje cíle, které musí být splněny postupně
 # ";"            % -> Disjunkce (OR) - nabízí alternativní cíle k vyzkoušení
 # ":-"           % -> Implikace (IF ... THEN ...) - odděluje hlavu pravidla od těla
 # "."            % -> Konec klauzule / pravidla / dotazu
